@@ -32,3 +32,13 @@ export const getMonthDateFromDate = (date: string): string => {
   const d = new Date(date);
   return `${months[d.getMonth()].slice(0, 3)} ${d.getDate()}`;
 };
+
+export const getNewDate = (daysToAdd: number): string => {
+  const today = new Date();
+  const futureDate = new Date(today);
+  futureDate.setDate(today.getDate() + daysToAdd);
+
+  const options = {month: 'long', day: 'numeric'};
+
+  return futureDate.toLocaleDateString('en-US', options);
+};

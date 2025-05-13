@@ -1,6 +1,6 @@
 import {View, Text, TouchableOpacity, Animated} from 'react-native';
-import LeftArrowSVG from '../../assets/svg/LeftArrowSVG';
-import RightArrowSVG from '../../assets/svg/RightArrowSVG';
+import Styles from './CustomTopTabsStyle';
+import CalenderSelector from '../CalenderSelector/CalenderSelector';
 
 const CustomTopTabs = ({state, descriptors, navigation, position}) => {
   return (
@@ -11,13 +11,7 @@ const CustomTopTabs = ({state, descriptors, navigation, position}) => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            borderRadius: 5,
-            padding: 5,
-            backgroundColor: '#E0E0E0',
-          }}>
+        <View style={Styles.topBtnRow}>
           {state.routes.map((route, index) => {
             const {options} = descriptors[route.key];
             const label =
@@ -41,13 +35,12 @@ const CustomTopTabs = ({state, descriptors, navigation, position}) => {
             return (
               <TouchableOpacity
                 key={index}
-                style={{
-                  backgroundColor: isFocused ? 'white' : '#E0E0E0',
-                  paddingVertical: 5,
-                  alignItems: 'center',
-                  paddingHorizontal: 20,
-                  borderRadius: 5,
-                }}
+                style={[
+                  {
+                    backgroundColor: isFocused ? 'white' : '#E0E0E0',
+                  },
+                  Styles.tabs,
+                ]}
                 onPress={onPress}
                 accessibilityState={isFocused ? {selected: true} : {}}>
                 <Animated.Text style={{color: 'black'}}>{label}</Animated.Text>
@@ -56,56 +49,12 @@ const CustomTopTabs = ({state, descriptors, navigation, position}) => {
           })}
         </View>
       </View>
-
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        }}>
-        <TouchableOpacity>
-          <LeftArrowSVG />
-        </TouchableOpacity>
-
-        <View>
-          <Text>Apr 21 - Apr 27</Text>
-        </View>
-
-        <TouchableOpacity>
-          <RightArrowSVG />
-        </TouchableOpacity>
-      </View>
-
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-        <TouchableOpacity
-          style={{
-            borderRadius: 10,
-            borderWidth: 0.2,
-            marginHorizontal: 20,
-            borderColor: 'black',
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingVertical: 10,
-            paddingHorizontal: 20,
-          }}>
+      <CalenderSelector />
+      <View style={Styles.bottomBtnRow}>
+        <TouchableOpacity style={Styles.bottomBtn}>
           <Text>Offline</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            borderRadius: 10,
-            borderWidth: 0.2,
-            borderColor: 'black',
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingVertical: 10,
-            paddingHorizontal: 20,
-          }}>
+        <TouchableOpacity style={Styles.bottomBtn}>
           <Text>Virtual</Text>
         </TouchableOpacity>
       </View>

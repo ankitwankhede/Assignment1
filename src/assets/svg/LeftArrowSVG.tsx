@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Svg, { Rect, Defs, Pattern, Use, Image } from 'react-native-svg';
-const LeftArrowSVG = (props) => (
+import Svg, {Rect, Defs, Pattern, Use, Image} from 'react-native-svg';
+const LeftArrowSVG = props => (
   <Svg
     width={13}
     height={17}
